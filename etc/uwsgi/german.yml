@@ -1,1 +1,17 @@
 
+uwsgi:
+  pythonpath: /home/web/%n
+  chdir: /home/web/%n
+
+  env: DJANGO_SETTINGS_MODULE=%n.settings
+  module: %n.wsgi:application
+
+  master: True
+  vacuum: True
+  touch-reload: %p
+  memory-report: True
+  socket: /var/run/uwsgi/%n
+  max-requests: 5000
+  daemonize: /var/log/uwsgi/%n.log
+
+  log-syslog: %n
