@@ -1,0 +1,36 @@
+{% load i18n %}
+<header id="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-5 center">
+                <div class="v-parent">
+                    <div class="v-align header-block">
+                        <ul class="social-share">
+                            {% for key, link in settings.SOCIAL_GROUPS_LINKS.items %}
+                                <li><a href="{{ link.url }}" title="{{ link.title }}" target="_blank"><i class="fa fa-{{ link.icon }}"></i></a></li>
+                            {% endfor %}
+                            <li><a href="skype:[{{ settings.SKYPE_LOGIN }}]"><i class="fa fa-skype"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-8 center">
+               <div class="v-parent">
+                    <div class="v-align header-block" id="logo">
+                        {% if request.path != index %}<a href="{{ index }}">{% endif %}
+                        <h1>{% trans settings.SITE_TITLE %}</h1>
+                        <p>{% trans settings.SITE_SLOGAN %}</p>
+                        {% if request.path != index %}</a>{% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-align-sm-5 center">
+                <div class="v-parent">
+                    <div class="v-align header-block" id="search">
+                        {% include "zinnia/tags/search_form.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
