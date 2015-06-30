@@ -1,0 +1,30 @@
+{% load i18n staticfiles bootstrap3 %}
+{% url 'zinnia:entry_archive_index' as index %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock title %}{% block title-page %}{% endblock title-page %}</title>
+        {% block link %}{% endblock link %}
+        {% block script %}{% endblock script %}
+    </head>
+    <body>
+        {% include 'zinnia/include/header.html' %}
+        {% if request.path == index %}{% include 'zinnia/include/features.html' %}{% endif %}
+        <section id="blog" class="container">
+            <div class="blog">
+                <div class="col-md-8">
+                    {% block content %}
+                        {% block breadcrumbs %}{% endblock breadcrumbs %}
+                    {% endblock content %}
+                </div>
+                <aside class="col-md-4">
+                     {% block sidebar %}
+                     {% endblock sidebar %}
+                 </aside>
+             </div>
+        </section>
+        {% include 'zinnia/include/bottom.html' %}
+        {% include 'zinnia/include/footer.html' %}
+        {% include 'zinnia/include/js.html' %}
+    </body>
+</html>
