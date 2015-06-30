@@ -1,0 +1,32 @@
+{% load i18n %}
+<section id="bottom">
+    <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="widget">
+                    <h3>{% trans settings.SITE_TITLE %}</h3>
+                    <ul>
+                        {% for key, item in settings.MAIN_MENU.items %}
+                            <li><a href="{% url item.url_name %}"><i class="fa fa-{{ item.icon }}"></i> {% trans item.title %}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="widget">
+                    <h3>{% trans 'Follow us' %}</h3>
+                    <ul>
+                        {% for key, link in settings.SOCIAL_GROUPS_LINKS.items %}
+                            <li><a href="{{ link.url }}" title="{{ link.title }}" target="_blank"><i class="fa fa-{{ link.icon }}"></i> {{ link.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="widget">
+                    <iframe frameborder="0" allowtransparency="true" scrolling="no" src="{{ settings.YANDEX_MONEY_WIDGET }}" width="318" height="131"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
