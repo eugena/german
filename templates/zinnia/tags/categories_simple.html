@@ -1,0 +1,3 @@
+{% for category in categories %}
+    <a href="{{ category.get_absolute_url }}" title="{{ category }}">{{ category.slug|upper }}</a>{% if not forloop.last %}, {% else %}.{% endif %}
+{% endfor %}

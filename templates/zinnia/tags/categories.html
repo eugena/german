@@ -1,0 +1,16 @@
+{% load i18n %}
+<div class="widget categories">
+    <div class="row">
+        <div class="col-sm-6">
+            <ul class="blog_category">
+                  {% for category in categories %}
+                  <li{% if category.slug == context_category.slug %} class="current"{% endif %}>
+                    <a href="{{ category.get_absolute_url }}"
+                       title="{% blocktrans %}Show all entries in {{ category }}{% endblocktrans %}">{{ category }}
+                    <span class="badge">{{ category.count_entries_published }}</span></a>
+                  </li>
+                  {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+{% load i18n staticfiles %}
+<form method="get" action="{% url 'zinnia:entry_search' %}" class="search">
+  <p>
+    <input type="text" name="pattern"  autocomplete="off" class="search-form" placeholder="{% trans "Keywords..." %}" {% if pattern %}value="{{ pattern }}"{% endif %} />
+    <i class="fa fa-search" title="{% trans 'You can use - to exclude words or phrases, &quot;double quotes&quot; for exact phrases and the AND/OR boolean operators combined with parenthesis for complex queries.' %}"></i>
+  </p>
+</form>

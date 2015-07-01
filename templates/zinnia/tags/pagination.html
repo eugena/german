@@ -1,0 +1,38 @@
+{% load i18n %}
+<ul class="pagination pagination-lg">
+  <li>
+    <a href="?page={% if page.has_previous %}{{ page.previous_page_number }}{% else %}1{% endif %}{{ GET_string }}"
+       title="{% trans "More recent entries" %}">
+          <i class="fa fa-long-arrow-left"></i></a>
+  </li>
+
+  {% for page_number in begin %}
+  <li class="{% ifequal page.number page_number %} active{% endifequal %}">
+    <a href="?page={{ page_number }}{{ GET_string }}"
+       title="{% trans "Entries page" %} {{ page_number }}">{{ page_number }}</a>
+  </li>
+  {% endfor %}
+
+  {% if middle %}
+  {% for page_number in middle %}
+  <li class="{% ifequal page.number page_number %} active{% endifequal %}">
+    <a href="?page={{ page_number }}{{ GET_string }}"
+       title="{% trans "Entries page" %} {{ page_number }}">{{ page_number }}</a>
+  </li>
+  {% endfor %}
+  {% endif %}
+
+  {% if end %}
+  {% for page_number in end %}
+  <li class="{% ifequal page.number page_number %} active{% endifequal %}">
+    <a href="?page={{ page_number }}{{ GET_string }}"
+       title="{% trans "Entries page" %} {{ page_number }}">{{ page_number }}</a>
+  </li>
+  {% endfor %}
+  {% endif %}
+
+  <li>
+    <a href="?page={% if page.has_next %}{{ page.next_page_number }}{% else %}{{ page.paginator.num_pages }}{% endif %}{{ GET_string }}"
+       title="{% trans "More old entries" %}"><i class="fa fa-long-arrow-right"></i></a>
+  </li>
+</ul>

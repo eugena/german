@@ -1,0 +1,23 @@
+{% load i18n zinnia %}
+{% if comments %}
+    <div class="widget categories">
+        <h3>{% trans "Recent comments" %}</h3>
+        <div class="row">
+            <div class="col-sm-12">
+              {% for comment in comments %}
+                 <div class="single_comments">
+                    {% with entry=comment.content_object %}
+                    <img src="{% get_gravatar comment.email 35 "G" %}" width="35" height="35" alt="{{ comment.user_name }}" title="{{ comment.user_name }}" class="img-circle"/>
+                    <p>{{ comment.comment }}</p>
+                    <div class="entry-meta small muted">
+                        <a href="{{ entry.get_absolute_url }}#comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}">
+                        {{ entry.title }}
+                        </a>
+                    </div>
+                    {% endwith %}
+                 </div>
+              {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}
