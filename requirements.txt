@@ -7,5 +7,5 @@ django-suit==0.2.12
 django-ckeditor==4.4.8
 zinnia-wysiwyg-ckeditor==1.2
 django-settings-export==1.0.3
-django-secretballot==0.4.0
+-e git://github.com/eugena/django-secretballot.git#egg=django-secretballot
 
