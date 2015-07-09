@@ -3,6 +3,7 @@
 
 {% block content %}
     <h1>{% trans 'Contacts' %}</h1>
+    <p>{{ settings.FEEDBACK_FORM_TEXT }}</p>
     <form action="{{ form.action }}" method="post" id="contact-form" class="contact-form" name="contact-form">
         {% csrf_token %}
         {% for field in form %}
