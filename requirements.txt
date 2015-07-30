@@ -9,4 +9,4 @@ zinnia-wysiwyg-ckeditor==1.2
 django-settings-export==1.0.3
 -e git://github.com/eugena/django-secretballot.git#egg=django-secretballot
 -e git://github.com/eugena/django-stripwhitespace-middleware.git#egg=django-stripwhitespace-middleware
-
+-e git://github.com/eugena/django-mere-feedback.git#egg=django-mere-feedback
