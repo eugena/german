@@ -3,36 +3,42 @@
 
 {% block content %}
     <h1>{% trans 'Contacts' %}</h1>
-    <p>{{ settings.FEEDBACK_FORM_TEXT }}</p>
-    <form action="{{ form.action }}" method="post" id="contact-form" class="contact-form" name="contact-form">
-        {% csrf_token %}
-        {% for field in form %}
-            {% if field.is_hidden %}
-                <div>{{ field }}</div>
-            {% endif %}
-        {% endfor %}
-        <div class="row">
-            <div class="col-sm-5">
-                <div class="form-group">
-                     {% bootstrap_field form.user_name %}
+    {% if form %}
+        <p>{% trans settings.FEEDBACK_FORM_TEXT %}</p>
+        <form action="{{ form.action }}" method="post" id="contact-form" class="contact-form" name="contact-form">
+            {% csrf_token %}
+            {% for field in form %}
+                {% if field.is_hidden %}
+                    <div>{{ field }}</div>
+                {% endif %}
+            {% endfor %}
+            <div class="row">
+                <div class="col-sm-5">
+                    {% if not request.user.is_authenticated %}
+                    <div class="form-group">
+                         {% bootstrap_field form.user_name %}
+                    </div>
+                    <div class="form-group">
+                        {% bootstrap_field form.email %}
+                    </div>
+                    {% endif %}
+                    <div class="form-group">
+                        {% bootstrap_field form.subject %}
+                    </div>
                 </div>
-                <div class="form-group">
-                    {% bootstrap_field form.email %}
-                </div>
-                <div class="form-group">
-                    {% bootstrap_field form.subject %}
+                <div class="col-sm-7">
+                    <div class="form-group">
+                        {% bootstrap_field form.text %}
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            {% bootstrap_icon "star" %} {% trans 'Submit' %}
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-7">
-                <div class="form-group">
-                    {% bootstrap_field form.text %}
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">
-                        {% bootstrap_icon "star" %} {% trans 'Submit' %}
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
+        </form>
+    {% else %}
+        <p>{% trans settings.FEEDBACK_FORM_SUCCESS_TEXT %}</p>
+    {% endif %}
 {% endblock content %}
